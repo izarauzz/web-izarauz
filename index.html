@@ -1,1 +1,177 @@
-pagina web starter
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f5f5f0">
+	<meta name="description" content="Iñigo Zarauz: estudiante de Big Data, Data Science & Business Analytics, con experiencia en consultoría, analítica y economía del deporte.">
+	<title>Iñigo Zarauz | Datos, estrategia y deporte</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: light;
+			--paper: #f5f5f0;
+			--ink: #18231f;
+			--muted: #69736d;
+			--line: #d9ddd6;
+			--green: #174f3b;
+			--lime: #d7f36a;
+			--orange: #ed7844;
+			--mono: "DM Mono", monospace;
+			--sans: "Manrope", sans-serif;
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+		a { color: inherit; }
+		.wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+		.topbar { height: 74px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+		.wordmark { font-size: 14px; font-weight: 800; text-decoration: none; }
+		.wordmark span { color: var(--orange); }
+		nav { display: flex; gap: 30px; align-items: center; }
+		nav a { color: var(--muted); font-size: 12px; font-weight: 700; text-decoration: none; }
+		nav a:hover, nav a:focus-visible { color: var(--green); }
+		.nav-contact { border: 1px solid var(--ink); padding: 10px 15px; color: var(--ink); }
+		.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); align-items: center; gap: 64px; padding-block: 86px 92px; }
+		.eyebrow, .section-kicker, .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0; text-transform: uppercase; }
+		.eyebrow { display: flex; align-items: center; gap: 10px; color: var(--green); }
+		.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #71a94b; box-shadow: 0 0 0 4px #71a94b22; }
+		h1 { max-width: 660px; margin: 22px 0 20px; font-size: clamp(46px, 6.3vw, 76px); line-height: .99; letter-spacing: 0; font-weight: 700; }
+		h1 em { color: var(--green); font-style: normal; }
+		.intro { max-width: 620px; color: #4f5b54; font-size: 16px; line-height: 1.8; }
+		.hero-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 30px; }
+		.button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border: 1px solid var(--green); background: var(--green); color: white; font-size: 12px; font-weight: 700; text-decoration: none; transition: background .2s ease, color .2s ease, transform .2s ease; }
+		.button:hover { transform: translateY(-2px); background: #103a2b; }
+		.button.secondary { background: transparent; color: var(--green); }
+		.button.secondary:hover { background: #e7ebe2; }
+		.viz { position: relative; min-height: 354px; overflow: hidden; padding: 26px; background: var(--green); color: white; isolation: isolate; }
+		.viz::before, .viz::after { position: absolute; z-index: -1; content: ""; border: 1px solid #ffffff30; border-radius: 50%; }
+		.viz::before { width: 260px; height: 260px; right: -76px; bottom: -105px; }
+		.viz::after { width: 164px; height: 164px; right: -28px; bottom: -57px; }
+		.viz-head { display: flex; justify-content: space-between; gap: 12px; color: #d9e5da; font: 10px var(--mono); text-transform: uppercase; }
+		.viz-title { margin: 35px 0 4px; font-size: 18px; font-weight: 600; }
+		.viz-subtitle { margin: 0; color: #b9c9bd; font-size: 11px; }
+		.chart { height: 142px; display: flex; align-items: end; gap: 9px; margin-top: 26px; border-bottom: 1px solid #ffffff52; background: repeating-linear-gradient(to bottom, transparent 0 34px, #ffffff16 35px 36px); }
+		.bar { position: relative; flex: 1; min-width: 0; height: var(--height); background: #96c671; animation: rise .7s both; transform-origin: bottom; }
+		.bar:nth-child(2n) { background: var(--lime); }
+		.bar:nth-child(3n) { background: #ed7844; }
+		.bar:nth-child(2) { animation-delay: .08s; }
+		.bar:nth-child(3) { animation-delay: .16s; }
+		.bar:nth-child(4) { animation-delay: .24s; }
+		.bar:nth-child(5) { animation-delay: .32s; }
+		.bar:nth-child(6) { animation-delay: .4s; }
+		.bar:nth-child(7) { animation-delay: .48s; }
+		.chart-labels { display: flex; justify-content: space-between; margin-top: 9px; color: #c4d2c7; font: 9px var(--mono); }
+		.viz-note { margin-top: 22px; color: #d9e5da; font-size: 10px; }
+		@keyframes rise { from { transform: scaleY(.1); } to { transform: scaleY(1); } }
+		.ticker { background: var(--lime); }
+		.ticker-inner { display: flex; justify-content: space-between; gap: 24px; padding-block: 18px; }
+		.ticker-item { display: flex; align-items: baseline; gap: 9px; }
+		.ticker strong { font-size: 18px; }
+		.ticker span { color: #42513c; font: 10px var(--mono); text-transform: uppercase; }
+		section.content { padding-block: 82px; border-bottom: 1px solid var(--line); }
+		.section-head { display: grid; grid-template-columns: 1fr 2fr; gap: 34px; margin-bottom: 37px; }
+		.section-kicker { color: var(--orange); padding-top: 10px; }
+		h2 { margin: 0; font-size: clamp(29px, 4vw, 43px); line-height: 1.15; letter-spacing: 0; }
+		.section-copy { max-width: 660px; margin: 13px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+		.timeline { grid-column: 2; border-top: 1px solid var(--line); }
+		.entry { display: grid; grid-template-columns: 145px 1fr; gap: 22px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+		.entry time { color: var(--muted); font: 10px/1.6 var(--mono); text-transform: uppercase; }
+		.entry h3 { margin: 0; font-size: 15px; line-height: 1.5; }
+		.entry .place { margin-top: 2px; color: var(--green); font-size: 12px; font-weight: 700; }
+		.entry p { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+		.achievement-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+		.achievement { min-height: 192px; padding: 23px; background: var(--paper); }
+		.achievement .number { color: var(--orange); font: 11px var(--mono); }
+		.achievement h3 { max-width: 260px; margin: 22px 0 9px; font-size: 16px; line-height: 1.45; }
+		.achievement p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+		.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; }
+		.skills-grid h3 { margin: 0 0 17px; font: 11px var(--mono); color: var(--green); text-transform: uppercase; }
+		.skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+		.skill-list span { padding: 9px 11px; border: 1px solid var(--line); color: #46524b; font-size: 11px; }
+		.contact { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 30px; padding-block: 78px; }
+		.contact h2 { max-width: 590px; }
+		.contact p { margin: 15px 0 0; color: var(--muted); font-size: 13px; }
+		footer { display: flex; justify-content: space-between; gap: 20px; padding-block: 20px; border-top: 1px solid var(--line); color: var(--muted); font: 9px var(--mono); text-transform: uppercase; }
+		footer a { text-decoration: none; }
+		@media (max-width: 760px) {
+			.wrap { width: min(100% - 36px, 560px); }
+			.topbar { height: 65px; }
+			nav { gap: 15px; }
+			nav a:not(.nav-contact) { display: none; }
+			.hero { grid-template-columns: 1fr; gap: 38px; padding-block: 64px 58px; }
+			h1 { font-size: clamp(44px, 12vw, 66px); }
+			.intro { font-size: 14px; }
+			.viz { min-height: 330px; }
+			.ticker-inner { justify-content: flex-start; overflow-x: auto; }
+			.ticker-item { flex: 0 0 auto; }
+			section.content { padding-block: 60px; }
+			.section-head { grid-template-columns: 1fr; gap: 13px; margin-bottom: 26px; }
+			.timeline { grid-column: 1; }
+			.achievement-list { grid-template-columns: 1fr; }
+			.achievement { min-height: auto; }
+			.achievement h3 { margin-top: 14px; }
+			.skills-grid { grid-template-columns: 1fr; gap: 30px; }
+			.contact { grid-template-columns: 1fr; align-items: start; padding-block: 60px; }
+			footer { flex-wrap: wrap; }
+		}
+		@media (max-width: 420px) {
+			.entry { grid-template-columns: 1fr; gap: 7px; }
+			.viz { padding: 21px; }
+			.ticker-inner { gap: 20px; }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<header class="wrap topbar">
+		<a class="wordmark" href="#inicio">IÑIGO ZARAUZ<span>.</span></a>
+		<nav aria-label="Navegación principal"><a href="#perfil">Perfil</a><a href="#trayectoria">Trayectoria</a><a href="#logros">Logros</a><a class="nav-contact" href="#contacto">Contacto ↗</a></nav>
+	</header>
+	<main>
+		<section class="wrap hero" id="inicio">
+			<div>
+				<div class="eyebrow"><span class="status-dot"></span> Datos · Estrategia · Deporte</div>
+				<h1>Convierto datos en <em>decisiones</em>.</h1>
+				<p class="intro">Soy Iñigo Zarauz, estudiante de Big Data, Data Science &amp; Business Analytics en la Universidad Complutense de Madrid. Combino formación en analítica y negocio con experiencia en consultoría estratégica, y me interesa especialmente cómo los datos pueden explicar y mejorar el deporte.</p>
+				<div class="hero-links"><a class="button" href="mailto:izarauz@gmail.com">Hablemos ↗</a><a class="button secondary" href="https://www.linkedin.com/in/i%C3%B1igozarauz/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+			</div>
+			<aside class="viz" aria-label="Visualización conceptual de datos deportivos">
+				<div class="viz-head"><span>Cuaderno de análisis</span><span>01 / 03</span></div>
+				<p class="viz-title">El juego también se mide.</p><p class="viz-subtitle">Señales, patrones y decisiones en la cancha</p>
+				<div class="chart" aria-hidden="true"><i class="bar" style="--height: 38%"></i><i class="bar" style="--height: 60%"></i><i class="bar" style="--height: 47%"></i><i class="bar" style="--height: 76%"></i><i class="bar" style="--height: 58%"></i><i class="bar" style="--height: 89%"></i><i class="bar" style="--height: 70%"></i><i class="bar" style="--height: 100%"></i><i class="bar" style="--height: 78%"></i><i class="bar" style="--height: 92%"></i></div>
+				<div class="chart-labels"><span>OBSERVAR</span><span>MODELAR</span><span>DECIDIR</span></div><div class="viz-note">ECONOMÍA DEL DEPORTE / BALONCESTO</div>
+			</aside>
+		</section>
+		<div class="ticker" aria-label="Resumen de perfil"><div class="wrap ticker-inner"><div class="ticker-item"><strong>UCM</strong><span>Máster · 2026–27</span></div><div class="ticker-item"><strong>UNAV</strong><span>Empresa + analítica</span></div><div class="ticker-item"><strong>Ross</strong><span>Intercambio · Michigan</span></div><div class="ticker-item"><strong>CIED16</strong><span>Investigación deportiva</span></div></div></div>
+		<section class="wrap content" id="perfil">
+			<div class="section-head"><div class="section-kicker">01 / Perfil</div><div><h2>Negocio con mentalidad analítica.</h2><p class="section-copy">Me gradué en Administración y Dirección de Empresas y en Data Analytics por la Universidad de Navarra. Mi experiencia internacional en Michigan Ross y mi trabajo en proyectos de consultoría me han enseñado a abordar problemas complejos desde perspectivas distintas: entender el contexto, trabajar con evidencia y comunicar recomendaciones con claridad.</p></div></div>
+			<div class="skills-grid"><div><h3>Herramientas</h3><div class="skill-list"><span>Python</span><span>R</span><span>SQL</span><span>Stata</span><span>Excel</span><span>Power BI</span><span>Tableau</span><span>Google BigQuery</span></div></div><div><h3>Enfoques</h3><div class="skill-list"><span>Analítica de negocio</span><span>Machine learning</span><span>Modelización estadística</span><span>Visualización de datos</span><span>Estrategia</span><span>Economía del deporte</span></div></div></div>
+		</section>
+		<section class="wrap content" id="trayectoria">
+			<div class="section-head"><div class="section-kicker">02 / Trayectoria</div><div><h2>Aprender haciendo.</h2><p class="section-copy">Formación internacional y experiencia aplicada en proyectos de estrategia, operaciones y análisis.</p></div></div>
+			<div class="timeline">
+				<article class="entry"><time>Sep. 2026 — Sep. 2027</time><div><h3>Máster en Big Data, Data Science &amp; Business Analytics</h3><div class="place">Universidad Complutense de Madrid · Madrid</div></div></article>
+				<article class="entry"><time>May. — Jul. 2025<br>Jun. — Ago. 2026</time><div><h3>Prácticas de Estrategia y Operaciones</h3><div class="place">IDOM Consulting, Engineering, Architecture · Bilbao</div><p>Modelos de optimización para la red ferroviaria irlandesa, planificación de infraestructuras de regadío en Jeddah y análisis de entrada a mercado para un productor de DRI.</p></div></article>
+				<article class="entry"><time>Sep. 2022 — Jun. 2026</time><div><h3>Grado bilingüe en ADE + Diploma en Data Analytics</h3><div class="place">Universidad de Navarra · Pamplona</div><p>Trabajo de fin de grado sobre asignación de talento y equilibrio competitivo en el baloncesto profesional, reconocido con Matrícula de Honor y Primer Premio ex aequo.</p></div></article>
+				<article class="entry"><time>Sep. — Dic. 2025</time><div><h3>Programa de intercambio internacional</h3><div class="place">University of Michigan · Stephen M. Ross School of Business</div><p>Asignaturas de mercados de divisas y capitales, estrategia e innovación empresarial basada en tecnología.</p></div></article>
+			</div>
+		</section>
+		<section class="wrap content" id="logros">
+			<div class="section-head"><div class="section-kicker">03 / Proyectos y liderazgo</div><div><h2>Ideas que pasan a la cancha.</h2><p class="section-copy">Investigación, retos de innovación y coordinación de equipos en entornos internacionales.</p></div></div>
+			<div class="achievement-list">
+				<article class="achievement"><div class="number">01 — INVESTIGACIÓN</div><h3>Datos y equilibrio competitivo</h3><p>Trabajo sobre asignación de talento en baloncesto profesional, presentado en CIED16, conferencia nacional de economía y gestión del deporte.</p></article>
+				<article class="achievement"><div class="number">02 — INNOVACIÓN</div><h3>CEO Challenge Hackathon 2025</h3><p>Ganador con una solución de recomendación basada en NLP, presentada al departamento de innovación de Telefónica.</p></article>
+				<article class="achievement"><div class="number">03 — LIDERAZGO</div><h3>UNICC · Relaciones corporativas</h3><p>Vicepresidente de una competición internacional con 16 universidades, más de 80 participantes y delegaciones de más de 10 países.</p></article>
+			</div>
+			<div class="section-head" style="margin-top: 46px; margin-bottom: 0;"><div class="section-kicker">Fuera del aula</div><div><p class="section-copy" style="margin-top: 0;">He sido representante de curso, monitor de campamento en Estados Unidos y España y deportista competitivo de baloncesto y balonmano. Hablo español e inglés a nivel nativo, francés (A2) y euskera (B1).</p></div></div>
+		</section>
+		<section class="wrap contact" id="contacto"><div><div class="section-kicker">04 / Contacto</div><h2>¿Hablamos de datos, negocio o deporte?</h2><p>Estoy en Bizkaia y abierto a conectar.</p></div><div class="hero-links"><a class="button" href="mailto:izarauz@gmail.com">izarauz@gmail.com ↗</a><a class="button secondary" href="https://www.linkedin.com/in/i%C3%B1igozarauz/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></section>
+	</main>
+	<footer class="wrap"><span>© 2026 Iñigo Zarauz Nebreda</span><span>Bizkaia, España</span><a href="#inicio">Volver arriba ↑</a></footer>
+</body>
+</html>
